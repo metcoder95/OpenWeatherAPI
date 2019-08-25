@@ -1,0 +1,21 @@
+{
+  "name": "stocard_challenge",
+  "version": "1.0.0",
+  "description": "Stocard Challenge for BackEnd position",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"test\""
+  },
+  "author": "MetCoder95",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.1.0",
+    "restify": "^8.4.0",
+    "restify-errors": "^8.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
