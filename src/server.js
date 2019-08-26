@@ -1,9 +1,10 @@
-const restify = require('restify');
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
 
-const { plugins } = restify;
+const server = express();
 
-const server = restify.createServer();
-
-server.use(plugins.queryParser);
+server.use(helmet());
+server.use(cors());
 
 module.exports = server;

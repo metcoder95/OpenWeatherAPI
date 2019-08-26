@@ -1,8 +1,11 @@
-const restifyErrors = require('restify-errors');
+const errors = require('http-errors');
 
 const { getCityByID, getCityWeather } = require('./actions');
 
-const getCities = (req, res, next) => {};
+const getCities = (req, res, next) => {
+  console.log('Get cities');
+  return res.json({ message: 'Im Here' });
+};
 
 const getCity = (req, res, next) => {
   const {
@@ -11,11 +14,12 @@ const getCity = (req, res, next) => {
 
   console.log('Getting City...');
   console.log('City ID:', city_id);
+
   const city = getCityByID(city_id);
 
-  if (!city) return res.send(new restifyErrors.NotFoundError('city not found'));
+  if (!city) return next(errors(404, 'City not found'));
 
-  return res.send(city);
+  return res.json(city);
 };
 
 const getWeather = async (req, res, next) => {
@@ -26,9 +30,11 @@ const getWeather = async (req, res, next) => {
   try {
     const weather = await getCityWeather(city_id);
 
-    return weather;
+    return res.json(weather);
   } catch (error) {
-    return res.send(new restifyErrors.NotFoundError('City not found'));
+    const { status, message } = error;
+
+    return next(errors(status || 500, message));
   }
 };
 

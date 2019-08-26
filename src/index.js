@@ -1,19 +1,20 @@
+const http = require('http');
+
 const Modules = require('./modules');
 const Server = require('./server');
-const { flatObject } = require('./utils');
+const { ExpressMiddlewares } = require('./lib');
 
 const init = (port, callback) => {
-  const flattenModules = flatObject(Modules);
-
-  Object.keys(flattenModules).forEach(key => {
-    const { method, path, middlewares } = flattenModules[key];
-
-    Server[method](path, ...middlewares);
+  Object.keys(Modules).forEach(key => {
+    const { basePath, routes } = Modules[key];
+    Server.use(basePath, routes);
   });
 
-  setTimeout(() => {
-    Server.listen(port, callback(Server));
-  }, 0);
+  Server.use(ExpressMiddlewares.errorHandler);
+
+  setImmediate(() => {
+    http.createServer(Server).listen(port, callback);
+  });
 };
 
-module.exports = init;
+module.exports = { init };

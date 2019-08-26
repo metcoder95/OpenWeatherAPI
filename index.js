@@ -3,8 +3,6 @@ const app = require('./src');
 
 const port = config('port');
 
-console.log(port);
-
-app(port, server => {
-  console.log('Server Info:', server.name, server.url);
+app.init(port, () => {
+  console.log('Server Info:', `http://localhost:${port}`);
 });
