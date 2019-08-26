@@ -2,15 +2,15 @@
   "name": "stocard_challenge",
   "version": "1.0.0",
   "description": "Stocard Challenge for BackEnd position",
-  "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node --inspect=5858 -r ts-node/register index.ts",
+    "build": "npx tsc",
+    "dev": "nodemon",
     "test": "echo \"test\""
   },
   "author": "MetCoder95",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^4.17.1",
     "axios": "^0.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
@@ -19,6 +19,16 @@
     "http-errors": "^1.7.3"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.1",
+    "@types/helmet": "0.0.44",
+    "@types/http-errors": "^1.6.2",
+    "@types/node": "^12.7.2",
+    "eslint": "^6.2.2",
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   }
 }

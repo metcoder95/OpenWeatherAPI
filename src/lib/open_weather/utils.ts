@@ -1,4 +1,6 @@
-const substractWeather = responseData => {
+import { IWeather } from './open_weather';
+
+export const substractWeather = (responseData: any): IWeather => {
   const { weather, sys, main, wind, clouds } = responseData;
 
   const { main: type, description: type_description } = weather;
@@ -11,19 +13,16 @@ const substractWeather = responseData => {
   const sunset = new Date(rawSunset).toISOString();
 
   return {
-    type, 
-    type_description, 
-    sunrise, 
-    sunset, 
-    temp, 
-    temp_min, 
-    temp_max, 
-    pressure, 
-    humidity, 
-    clouds_percent, 
+    type,
+    type_description,
+    sunrise,
+    sunset,
+    temp,
+    temp_min,
+    temp_max,
+    pressure,
+    humidity,
+    clouds_percent,
     wind_speed
-  }
-}
-
-
-module.exports = { substractWeather };
+  } as IWeather;
+};

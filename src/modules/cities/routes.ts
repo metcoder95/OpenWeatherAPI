@@ -1,7 +1,7 @@
-const { Router } = require('express');
+import { Router } from 'express';
 
-const Controllers = require('./controllers');
-const Middlewares = require('./middlewares');
+import * as Controllers from './controllers';
+import * as Middlewares from './middlewares';
 
 const routes = Router();
 
@@ -13,4 +13,4 @@ routes.get(
   Controllers.getWeather
 );
 
-module.exports = { basePath: '/cities', routes };
+export default { basePath: '/cities', routes };

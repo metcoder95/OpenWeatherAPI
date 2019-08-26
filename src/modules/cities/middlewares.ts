@@ -1,6 +1,11 @@
-const errors = require('http-errors');
+import errors from 'http-errors';
+import { Request, Response, NextFunction } from 'express';
 
-const checkLatLng = (req, res, next) => {
+export const checkLatLng = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   console.log('Im Checking LatLng');
   const { query } = req;
   const { lat, lng } = query;
@@ -10,7 +15,11 @@ const checkLatLng = (req, res, next) => {
   return next();
 };
 
-const checkCityID = (req, res, next) => {
+export const checkCityID = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   console.log('Im checking CityID');
   const { params } = req;
   const { city_id } = params;
@@ -19,5 +28,3 @@ const checkCityID = (req, res, next) => {
 
   return next();
 };
-
-module.exports = { checkCityID, checkLatLng };
