@@ -1,9 +1,21 @@
 const database = require('../../../database/city.list.json');
+import { ICity, IFilterDistanceArgs } from './cities';
+import { getDistances, filterCities } from './utils';
+
 import { OpenWeather, IWeather } from '../../lib';
-import { ICity } from './cities';
 
 // @ts-ignore
 const cities: ICity[] = database as ICity;
+
+export const getCities = (lat: number, lon: number): ICity[] => {
+  const distances: IFilterDistanceArgs = getDistances(lat, lon);
+
+  console.log(distances);
+
+  const citiesTenKmAround: ICity[] = cities.filter(filterCities(distances));
+
+  return citiesTenKmAround;
+};
 
 export const getCityByID = (id: string): ICity => {
   const city = cities

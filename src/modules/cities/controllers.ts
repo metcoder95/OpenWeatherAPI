@@ -1,13 +1,25 @@
 import errors from 'http-errors';
 import { Request, Response, NextFunction } from 'express';
 
-import { getCityByID, getCityWeather } from './actions';
+import {
+  getCityByID,
+  getCityWeather,
+  getCities as getCitiesAction
+} from './actions';
 import { IWeather } from '../../lib';
 import { ICity } from './cities';
 
 export const getCities = (req: Request, res: Response): Response => {
-  console.log('Get cities');
-  return res.json({ message: 'Im Here' });
+  const { query } = req;
+
+  const { lat, lon } = query;
+
+  const parsedLat: number = parseFloat(lat);
+  const parsedLon: number = parseFloat(lon);
+
+  const cities: ICity[] = getCitiesAction(parsedLat, parsedLon);
+
+  return res.json(cities);
 };
 
 export const getCity = (

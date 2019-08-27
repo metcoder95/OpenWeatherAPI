@@ -6,11 +6,10 @@ export const checkLatLng = (
   res: Response,
   next: NextFunction
 ): void => {
-  console.log('Im Checking LatLng');
   const { query } = req;
-  const { lat, lng } = query;
+  const { lat, lon } = query;
 
-  if (!lat || !lng) return next(errors(400, 'lat/lng required'));
+  if (!lat || !lon) return next(errors(400, 'lat/lng required'));
 
   return next();
 };
