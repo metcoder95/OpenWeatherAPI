@@ -6,7 +6,7 @@ import {
   getCityWeather,
   getCities as getCitiesAction
 } from './actions';
-import { IWeather } from '../../lib';
+import { IWeather, Cache } from '../../lib';
 import { ICity } from './cities';
 
 export const getCities = (req: Request, res: Response): Response => {
@@ -17,7 +17,11 @@ export const getCities = (req: Request, res: Response): Response => {
   const parsedLat: number = parseFloat(lat);
   const parsedLon: number = parseFloat(lon);
 
-  const cities: ICity[] = getCitiesAction(parsedLat, parsedLon);
+  const key = `${lat}/${lon}`;
+
+  const cities: ICity[] = Cache.has(key)
+    ? Cache.get(key)
+    : getCitiesAction(parsedLat, parsedLon);
 
   return res.json(cities);
 };

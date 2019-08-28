@@ -8,10 +8,3 @@ export interface ICity {
   country: string;
   coord: ICoordinates;
 }
-
-export interface IFilterDistanceArgs {
-  latPlusTenKm: number;
-  lonPlusTenKm: number;
-  latMinusTenKm: number;
-  lonMinusTenKm: number;
-}

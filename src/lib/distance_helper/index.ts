@@ -1,12 +1,30 @@
 import { toRadians } from './utils';
 
-const LAT_IN_KM: number = 110574;
-const LON_IN_KM = (lat: number): number => 111320 * Math.cos(toRadians(lat));
+const getDistanceBetweenCoordinates = (
+  latP1: number,
+  lonP1: number,
+  latP2: number,
+  lonP2: number
+): number => {
+  const R = 6371;
+  const latP1InRadians = toRadians(latP1);
+  const latP2InRadians = toRadians(latP2);
+  const dLat = toRadians(latP2 - latP1);
+  const dLon = toRadians(lonP2 - lonP1);
 
-let TEN_KM_LAT: number = (10 * 1) / LAT_IN_KM;
-let TEN_KM_LON: number = (10 * 1) / LON_IN_KM(1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(latP1InRadians) *
+      Math.cos(latP2InRadians) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
 
-console.log(TEN_KM_LAT);
-console.log(TEN_KM_LON);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
 
-export default { tenKmLat: TEN_KM_LAT, tenKmLon: TEN_KM_LON };
+  return distance;
+};
+
+export default {
+  getDistanceBetweenCoordinates
+};
