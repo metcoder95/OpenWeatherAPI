@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Stocard Challenge for BackEnd position",
   "scripts": {
-    "start": "node --inspect=5858 -r ts-node/register index.ts",
+    "start": "nodemon",
     "build": "npx tsc",
-    "dev": "nodemon",
+    "dev": "node --inspect=5858 -r ts-node/register index.ts",
     "test": "echo \"test\""
   },
   "author": "MetCoder95",

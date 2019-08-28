@@ -1,8 +1,12 @@
 {
-  "nodemonConfig": {
-    "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules", "database"],
-    "watch": ["src", "config", "./", "**/*.ts"],
-    "exec": "npm start",
-    "ext": "ts"
-  }
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    ".git",
+    "node_modules",
+    "database"
+  ],
+  "watch": ["src/*", "config", "**/*.ts"],
+  "exec": "npm run dev",
+  "ext": "ts"
 }
